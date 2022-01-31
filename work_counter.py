@@ -9,7 +9,7 @@ from threading import *
 from datetime import datetime, timedelta
 from pygame import mixer
 import webbrowser
-import random, os
+import random
 
 ### NOTES
 ### - Background not yet processed.
@@ -58,7 +58,7 @@ config = {}
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        self.setFixedSize(247, 393)
+        self.setFixedSize(247, 410)
         uic.loadUi("data/productivity-game.ui", self) # UI to be loaded
 # --- GUI CONNECTS, BUTTON LINKS ---
         # Tab: Tasks Today, Work
@@ -599,6 +599,11 @@ class UI(QMainWindow):
             self.agiButton.setEnabled(False)
             self.strButton.setEnabled(False)
             self.vitButton.setEnabled(False)
+        else:
+            self.lukButton.setEnabled(True)
+            self.agiButton.setEnabled(True)
+            self.strButton.setEnabled(True)
+            self.vitButton.setEnabled(True)
     
     def addStatPoint(self, stat):
         """Adds specified stat points."""
@@ -621,7 +626,7 @@ class UI(QMainWindow):
         else:
             today = datetime.now().strftime("%b %d %Y %H:%M:%S")
             text = f"\n(DATE: {today})\n\n{self.noteInput.toPlainText()}  \n--END OF NOTE--"
-            with open("data/notes.txt","a+") as f:
+            with open("notes.txt","a+") as f:
                 f.write(text)
             self.noteInput.clear()
             T = Thread(target=self.savePrompt)
@@ -638,7 +643,7 @@ class UI(QMainWindow):
     
     def openNoteFile(self):
         """Button connect to open notes in notepad."""
-        webbrowser.open("data/notes.txt")
+        webbrowser.open("notes.txt")
 
     # --- TO-DO LIST ---
     def loadCheckList(self):
@@ -747,7 +752,7 @@ class UI(QMainWindow):
             self.timerButton.setText("Timer")
         print("Timer thread ends.")
 
-    # --- ADMIN'S TOOLS ---
+    # --- ADMIN TOOLS ---
     def loadRemoveEntry(self):
         """Refreshes the list of entries at the list."""
         c.execute("SELECT * from productivity")
@@ -821,16 +826,17 @@ class UI(QMainWindow):
                 self.startingTime.setTime(QTime.currentTime())
                 self.endingTime.setTime(QTime.currentTime())
                 self.updateStats()
+        self.updatePlayerStats()
 
     def updateConfig(self):
         global config
         try:
-            jsonFile = open("media/config.json", "r")
+            jsonFile = open("data/config.json", "r")
             config = json.load(jsonFile)
         except:
             config = {"weeklyGoal":40}
             print("config does not exist. Setting to default.")
-            jsonFile = open("media/config.json","w")
+            jsonFile = open("data/config.json","w")
             jsonFile = json.dump(config, jsonFile)
     
     def setGoal(self):
@@ -839,7 +845,7 @@ class UI(QMainWindow):
             self.infoDialog("Input your weekly goal. Default is 40 hours.")
         else: 
             config["weeklyGoal"] = self.weeklyGoalBox.value()
-            jsonFile = open("config.json", "w") # Saving to json
+            jsonFile = open("data/config.json", "w") # Saving to json
             jsonFile = json.dump(config, jsonFile)
             self.updateStats()
             self.infoDialog("Weekly goal set.")
@@ -944,9 +950,15 @@ class UI(QMainWindow):
                 weekTotalInt += data[3]
         goal = int(config["weeklyGoal"]) * 3600 # PLACEHOLDER - 40 hours a week goal. Will make it user interactive 
         weekTotalInt = goal - weekTotalInt
-        hours = (weekTotalInt // 60) // 60
-        minutes = (weekTotalInt // 60) % 60
-        self.weekLeft.setText(f"{hours} Hours and {minutes} Minutes")
+        if weekTotalInt > 0:
+            hours = (weekTotalInt // 60) // 60
+            minutes = (weekTotalInt // 60) % 60
+            self.weekLeft.setText(f"{hours} hrs and {minutes} mins left")
+        else: # Surpassed weekly goal
+            weekTotalInt = -weekTotalInt + goal
+            hours = (weekTotalInt // 60) // 60
+            minutes = (weekTotalInt // 60) % 60
+            self.weekLeft.setText(f"done {hours} hrs and {minutes} mins")
         self.updatePlayerStats() # Update player stats
     
     def workButtonClicked(self):

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>248</width>
-    <height>393</height>
+    <width>254</width>
+    <height>410</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -155,7 +155,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>Left this week!</string>
+       <string>this week!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -591,7 +594,7 @@
        <rect>
         <x>10</x>
         <y>160</y>
-        <width>71</width>
+        <width>121</width>
         <height>20</height>
        </rect>
       </property>
@@ -604,13 +607,16 @@
       <property name="text">
        <string>Date (M/D/Y)</string>
       </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>182</y>
-        <width>31</width>
+        <width>41</width>
         <height>21</height>
        </rect>
       </property>
@@ -622,6 +628,9 @@
       </property>
       <property name="text">
        <string>Time</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_20">
@@ -641,6 +650,9 @@
       </property>
       <property name="text">
        <string>Duration</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QSpinBox" name="spinBox">
@@ -810,7 +822,7 @@
        <rect>
         <x>134</x>
         <y>182</y>
-        <width>20</width>
+        <width>31</width>
         <height>21</height>
        </rect>
       </property>
@@ -1083,7 +1095,7 @@
        <rect>
         <x>10</x>
         <y>3</y>
-        <width>71</width>
+        <width>221</width>
         <height>16</height>
        </rect>
       </property>
@@ -1095,6 +1107,9 @@
       </property>
       <property name="text">
        <string>Create Note</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_18">
@@ -1206,7 +1221,7 @@
         <x>10</x>
         <y>30</y>
         <width>221</width>
-        <height>61</height>
+        <height>71</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1228,7 +1243,7 @@
         <x>10</x>
         <y>100</y>
         <width>221</width>
-        <height>61</height>
+        <height>71</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1250,7 +1265,7 @@
         <x>10</x>
         <y>170</y>
         <width>221</width>
-        <height>61</height>
+        <height>71</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1272,7 +1287,7 @@
         <x>10</x>
         <y>240</y>
         <width>221</width>
-        <height>61</height>
+        <height>71</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1293,8 +1308,8 @@
        <rect>
         <x>17</x>
         <y>56</y>
-        <width>101</width>
-        <height>31</height>
+        <width>131</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -1315,8 +1330,8 @@
        <rect>
         <x>17</x>
         <y>124</y>
-        <width>121</width>
-        <height>31</height>
+        <width>131</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -1338,7 +1353,7 @@
         <x>17</x>
         <y>195</y>
         <width>131</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -1360,7 +1375,7 @@
         <x>17</x>
         <y>264</y>
         <width>131</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -1431,9 +1446,9 @@
      <widget class="QLabel" name="label_36">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>160</x>
         <y>40</y>
-        <width>41</width>
+        <width>21</width>
         <height>41</height>
        </rect>
       </property>
@@ -1444,9 +1459,9 @@
      <widget class="QLabel" name="label_37">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>160</x>
         <y>110</y>
-        <width>41</width>
+        <width>21</width>
         <height>41</height>
        </rect>
       </property>
@@ -1457,9 +1472,9 @@
      <widget class="QLabel" name="label_38">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>160</x>
         <y>180</y>
-        <width>41</width>
+        <width>21</width>
         <height>41</height>
        </rect>
       </property>
@@ -1470,9 +1485,9 @@
      <widget class="QLabel" name="label_39">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>160</x>
         <y>250</y>
-        <width>41</width>
+        <width>21</width>
         <height>41</height>
        </rect>
       </property>
@@ -2007,7 +2022,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>248</width>
+     <width>254</width>
      <height>22</height>
     </rect>
    </property>
